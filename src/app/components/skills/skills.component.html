@@ -1,0 +1,107 @@
+<section id="skills" class="relative py-24 bg-gradient-to-br from-gray-950 via-violet-950/20 to-gray-950 overflow-hidden">
+  
+  <!-- Animated Background Elements -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl animate-pulse"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+    <!-- Section Header -->
+    <div class="text-center mb-20" appReveal>
+      <div class="inline-flex items-center gap-3 bg-violet-500/10 border border-violet-500/20 rounded-full px-6 py-2 mb-4">
+        <span class="relative flex h-3 w-3">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-violet-500"></span>
+        </span>
+        <p class="text-violet-400 text-sm font-semibold tracking-widest uppercase">Tech Stack & Expertise</p>
+      </div>
+      
+      <h2 class="text-5xl md:text-6xl font-black text-white mb-4">
+        My <span class="bg-gradient-to-r from-violet-400 via-purple-400 to-cyan-400 text-transparent bg-clip-text">Skills</span>
+      </h2>
+      <p class="text-gray-400 text-lg max-w-2xl mx-auto">Crafting digital experiences with cutting-edge technologies</p>
+      <div class="mt-6 w-24 h-1 bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-500 mx-auto rounded-full"></div>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div *ngFor="let group of skillGroups; let i = index" appReveal
+        class="group relative bg-gradient-to-br from-gray-900/80 via-gray-900/60 to-gray-900/80 backdrop-blur-xl border border-gray-800/50 rounded-3xl p-8 hover:border-violet-500/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-violet-500/20"
+        [style.animation-delay.ms]="i * 100">
+
+        <!-- Card Glow Effect -->
+        <div class="absolute inset-0 rounded-3xl bg-gradient-to-br from-violet-500/0 via-purple-500/0 to-cyan-500/0 group-hover:from-violet-500/10 group-hover:via-purple-500/5 group-hover:to-cyan-500/10 transition-all duration-500"></div>
+        
+        <!-- Content -->
+        <div class="relative z-10">
+          <!-- Category Header -->
+          <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-3">
+              <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500/20 to-cyan-500/20 flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300 group-hover:rotate-6">
+                {{ group.icon }}
+              </div>
+              <div>
+                <h3 class="text-white font-bold text-lg">{{ group.category }}</h3>
+                <p class="text-gray-500 text-xs">{{ group.items.length }} skills</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skills List -->
+          <div class="space-y-5">
+            <div *ngFor="let skill of group.items; let j = index" class="group/skill">
+              <!-- Skill Name & Percentage -->
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-gray-300 text-sm font-semibold group-hover/skill:text-white transition-colors duration-300">{{ skill.name }}</span>
+                <div class="flex items-center gap-2">
+                  <span class="text-violet-400 text-xs font-bold bg-violet-500/10 px-2 py-1 rounded-full border border-violet-500/20">{{ skill.level }}%</span>
+                </div>
+              </div>
+              
+              <!-- Progress Bar Container -->
+              <div class="relative h-2 bg-gray-800/80 rounded-full overflow-hidden backdrop-blur-sm">
+                <!-- Animated Shine Effect -->
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover/skill:translate-x-[200%] transition-transform duration-1000"></div>
+                
+                <!-- Progress Bar -->
+                <div #skillBar
+                  class="h-full bg-gradient-to-r from-violet-500 via-purple-500 to-cyan-500 rounded-full relative overflow-hidden shadow-lg shadow-violet-500/50"
+                  [attr.data-level]="skill.level"
+                  style="width: 0%">
+                  <!-- Inner Glow -->
+                  <div class="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corner Accent -->
+        <div class="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-violet-500/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"></div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA or Stats -->
+    <div class="mt-16 text-center" appReveal>
+      <div class="inline-flex flex-wrap justify-center gap-8 bg-gray-900/40 backdrop-blur-xl border border-gray-800/50 rounded-2xl px-8 py-6">
+        <div class="text-center">
+          <div class="text-3xl font-bold bg-gradient-to-r from-violet-400 to-purple-400 text-transparent bg-clip-text">5+</div>
+          <div class="text-gray-400 text-sm mt-1">Years Experience</div>
+        </div>
+        <div class="h-12 w-px bg-gray-800"></div>
+        <div class="text-center">
+          <div class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 text-transparent bg-clip-text">50+</div>
+          <div class="text-gray-400 text-sm mt-1">Projects Completed</div>
+        </div>
+        <div class="h-12 w-px bg-gray-800"></div>
+        <div class="text-center">
+          <div class="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-violet-400 text-transparent bg-clip-text">20+</div>
+          <div class="text-gray-400 text-sm mt-1">Technologies</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

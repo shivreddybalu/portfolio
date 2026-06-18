@@ -27,7 +27,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build -- --base-href=/ShivApp/
+        run: npm run build -- --base-href=/portfolio/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

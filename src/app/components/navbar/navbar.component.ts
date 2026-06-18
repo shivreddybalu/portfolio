@@ -12,6 +12,7 @@ import { DataService } from '../../services/data.service';
 export class NavbarComponent implements OnInit, OnDestroy {
   nav: any[] = [];
   resume = '';
+  resumeUrl = '';
   scrolled = false;
   menuOpen = false;
   private isBrowser: boolean;
@@ -50,6 +51,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.data.getPortfolio().subscribe(p => {
       this.nav = p.nav;
       this.resume = p.resume;
+      // Handle base href for GitHub Pages deployment
+      const baseHref = document.querySelector('base')?.getAttribute('href') || '/';
+      this.resumeUrl = baseHref === '/' ? this.resume : `${baseHref}${this.resume}`;
     });
     if (this.isBrowser) {
       this.setName(0);

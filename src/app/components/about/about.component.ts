@@ -11,6 +11,16 @@ import { RevealDirective } from '../../directives/reveal.directive';
 })
 export class AboutComponent implements OnInit {
   portfolio: any = {};
+  resumeUrl = '';
+  
   constructor(private data: DataService) {}
-  ngOnInit() { this.data.getPortfolio().subscribe(p => this.portfolio = p); }
+  
+  ngOnInit() {
+    this.data.getPortfolio().subscribe(p => {
+      this.portfolio = p;
+      // Handle base href for GitHub Pages deployment
+      const baseHref = document.querySelector('base')?.getAttribute('href') || '/';
+      this.resumeUrl = baseHref === '/' ? p.resume : `${baseHref}${p.resume}`;
+    });
+  }
 }

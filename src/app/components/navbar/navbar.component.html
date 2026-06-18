@@ -1,0 +1,155 @@
+<nav class="fixed top-0 w-full z-50 transition-all duration-300 nav-slide"
+  [ngClass]="scrolled ? 'bg-gray-900/95 backdrop-blur-md shadow-lg shadow-violet-500/10' : 'bg-transparent'">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- Logo with multilingual animation -->
+    <a routerLink="/" class="flex items-center gap-2 cursor-pointer">
+      <div class="relative h-8 overflow-hidden flex items-center gap-0.5">
+        <span class="text-xl font-black bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent"
+          [class]="isAnimating ? 'lang-out' : animClass">
+          {{ displayedName }}
+        </span>
+        <span class="text-white text-xl font-black">.</span>
+      </div>
+      <!-- Language badge with dynamic color -->
+      <span class="hidden sm:inline text-[10px] font-bold px-2 py-0.5 rounded-full border transition-all duration-300"
+        [class]="isAnimating ? 'lang-out' : animClass"
+        [ngClass]="langColor + ' border-current bg-current/10'">
+        {{ currentLang }}
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <ul class="hidden md:flex items-center gap-8">
+      <li *ngFor="let item of nav">
+        <a [routerLink]="item.route"
+          routerLinkActive="!text-violet-400 font-semibold"
+          [routerLinkActiveOptions]="isHome(item.route) ? { exact: true } : { exact: false }"
+          class="text-gray-300 hover:text-violet-400 text-sm font-medium transition-colors duration-200 relative group"
+          (click)="navigate(item.route)">
+          {{ item.label }}
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-violet-400 group-hover:w-full transition-all duration-300"></span>
+        </a>
+      </li>
+      <li>
+        <a [href]="resume" target="_blank"
+          class="px-4 py-2 rounded-full border border-violet-500 text-violet-400 text-sm font-medium hover:bg-violet-500 hover:text-white transition-all duration-200">
+          Resume ↗
+        </a>
+      </li>
+    </ul>
+
+    <!-- Mobile Hamburger -->
+    <button class="md:hidden text-gray-300 hover:text-white" (click)="menuOpen = !menuOpen">
+      <svg *ngIf="!menuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      <svg *ngIf="menuOpen" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div *ngIf="menuOpen" class="md:hidden bg-gray-900/98 border-t border-gray-800 px-6 py-4">
+    <ul class="flex flex-col gap-4">
+      <li *ngFor="let item of nav">
+        <a [routerLink]="item.route"
+          routerLinkActive="!text-violet-400 font-semibold"
+          [routerLinkActiveOptions]="isHome(item.route) ? { exact: true } : { exact: false }"
+          class="text-gray-300 hover:text-violet-400 text-sm font-medium transition-colors block"
+          (click)="navigate(item.route)">
+          {{ item.label }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  /* Navbar entrance */
+  .nav-slide { animation: navSlideDown 0.7s cubic-bezier(0.175,0.885,0.32,1.275) forwards; }
+  @keyframes navSlideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+  }
+
+  /* Exit animation (all same) */
+  .lang-out { animation: langOut 0.4s ease-in forwards; }
+  @keyframes langOut {
+    to { opacity: 0; transform: scale(0.7) translateY(-10px); filter: blur(4px); }
+  }
+
+  /* Telugu – zoom in */
+  .anim-zoom-in { animation: zoomIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) forwards; }
+  @keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.3); filter: blur(6px); }
+    to   { opacity: 1; transform: scale(1);   filter: blur(0);   }
+  }
+
+  /* Hindi – rotate in */
+  .anim-rotate-in { animation: rotateIn 0.5s ease-out forwards; }
+  @keyframes rotateIn {
+    from { opacity: 0; transform: rotate(-180deg) scale(0.5); }
+    to   { opacity: 1; transform: rotate(0deg)    scale(1);   }
+  }
+
+  /* Tamil – blur in */
+  .anim-blur-in { animation: blurIn 0.5s ease-out forwards; }
+  @keyframes blurIn {
+    from { opacity: 0; filter: blur(12px); transform: scale(1.3); }
+    to   { opacity: 1; filter: blur(0);    transform: scale(1);   }
+  }
+
+  /* Kannada – bounce in */
+  .anim-bounce-in { animation: bounceIn 0.6s cubic-bezier(0.175,0.885,0.32,1.275) forwards; }
+  @keyframes bounceIn {
+    0%  { opacity: 0; transform: translateY(-30px) scale(0.8); }
+    60% { transform: translateY(6px)  scale(1.05); }
+    80% { transform: translateY(-3px) scale(0.98); }
+    100%{ opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Malayalam – flip Y */
+  .anim-flip-y { animation: flipY 0.5s ease-out forwards; }
+  @keyframes flipY {
+    from { opacity: 0; transform: rotateY(90deg) translateX(20px); }
+    to   { opacity: 1; transform: rotateY(0deg)  translateX(0);    }
+  }
+
+  /* Bengali – wave in */
+  .anim-wave-in { animation: waveIn 0.6s ease-out forwards; }
+  @keyframes waveIn {
+    0%  { opacity: 0; transform: translateX(-20px) skewX(-15deg); }
+    60% { transform: translateX(5px) skewX(5deg); }
+    100%{ opacity: 1; transform: translateX(0) skewX(0); }
+  }
+
+  /* Gujarati – slide left */
+  .anim-slide-left { animation: slideLeft 0.45s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Punjabi – slide right */
+  .anim-slide-right { animation: slideRight 0.45s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+  @keyframes slideRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Odia – fade drop */
+  .anim-fade-drop { animation: fadeDrop 0.5s ease-out forwards; }
+  @keyframes fadeDrop {
+    from { opacity: 0; transform: translateY(-25px) scale(1.1); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* English – slide up */
+  .anim-slide-up { animation: slideUp 0.45s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>

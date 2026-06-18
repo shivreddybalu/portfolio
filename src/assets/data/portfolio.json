@@ -1,0 +1,51 @@
+{
+  "name": "Balu Sivaiah",
+  "title": "Software Engineer – Angular & Frontend Developer",
+  "tagline": "4+ years building scalable Angular apps | Migrated AngularJS → Angular 19 | 40% performance boost",
+  "email": "balushivareddy@gmail.com",
+  "phone": "+91 9010944657",
+  "location": "Hyderabad, India",
+  "linkedin": "https://www.linkedin.com/in/balu-sivaiah-47a4531a8",
+  "resume": "/assets/Balu%20Sivaiah%20Resume.pdf",
+  "about": "Software Engineer with 4+ years of experience in frontend development specializing in Angular, TypeScript, and modern UI frameworks. Proven track record of improving application performance by 40% through large-scale migration from AngularJS to Angular 19. Passionate about delivering scalable, high-quality solutions by leveraging expertise in UI optimization, testing frameworks, and seamless API integrations.",
+  "experience": [
+    {
+      "company": "Tech Mahindra",
+      "role": "Software Engineer",
+      "project": "Nissan – Application Modernization",
+      "duration": "Dec 2021 – Present",
+      "location": "Hyderabad, India",
+      "points": [
+        "Migrated enterprise apps from AngularJS/Angular 4 to Angular 17–20, delivering 40% performance improvement and reducing technical debt",
+        "Built reusable components, services, and pipes in TypeScript; implemented RxJS for async data handling and NgRx for centralized state management",
+        "Crafted responsive interfaces using Angular Material, SCSS, and Tailwind CSS; optimized with Lazy Loading, Route Guards, and AG Grid custom renderers boosting rendering efficiency by 30%",
+        "Achieved 90%+ code coverage across applications using Karma and Jasmine",
+        "Integrated RESTful APIs with Java/Spring Boot backends within Agile/Scrum teams",
+        "Monitored application health and performance on AWS; triggered Jenkins builds via pull requests for deployments on AWS ECS",
+        "Leveraged AWS Kiro with Autopilot and Supervised Modes for AI-driven code generation and task automation",
+        "Applied Spec-Driven Development and integrated MCP (Model Context Protocol) for context-aware, AI-assisted workflows"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Cloud Practitioner",
+      "validity": "May 2024 – May 2027"
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Tech – Computer Science",
+      "institute": "Bharath Institute of Higher Education and Research",
+      "location": "Chennai, India",
+      "year": "May 2017 – May 2021"
+    }
+  ],
+  "nav": [
+    { "label": "Home", "route": "/" },
+    { "label": "About", "route": "/about" },
+    { "label": "Skills", "route": "/skills" },
+    { "label": "Projects", "route": "/projects" },
+    { "label": "Contact", "route": "/contact" }
+  ]
+}
